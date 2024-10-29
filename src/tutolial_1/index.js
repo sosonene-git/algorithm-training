@@ -16,8 +16,8 @@ const users = [
 /* 回答 */
 const formattedData = users.map((user) => {
   return {
-    fullName: user.last_name + user.first_name,
-    isAdult: user.age >= 20 ? true : false,
+    fullName: `${user.last_name} ${user.first_name}`,
+    isAdult: user.age >= 20,
   };
 });
 console.log(formattedData);
