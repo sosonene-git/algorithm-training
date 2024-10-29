@@ -30,13 +30,29 @@ const products = [
 // - status: 在庫の状態（"在庫あり"/"在庫なし"）
 // - taxIncluded: 税込価格（税率10%）
 
-const filteredData = Array(products.find((product) => product.id === 2)).map(
-  (data) => {
-    return {
-      id: data.id,
-      status: data.stock === 0 ? "在庫なし" : "在庫あり",
-      taxIncluded: data.price * 1.1,
-    };
-  }
-);
-console.log(filteredData);
+/* 回答 */
+
+/* 定数 */
+//税
+const TAX_RATE = 1.1;
+//在庫
+const STOCK_STATUS = {
+  IN_STOCK: "在庫あり",
+  OUT_OF_STOCK: "在庫なし",
+};
+
+/* 特定商品の在庫を検索する処理*/
+const findProductById = (products, targetId) => {
+  const product = products.find((product) => product.id === targetId);
+  if (!product) return;
+
+  return {
+    id: product.id,
+    status:
+      product.stock === 0 ? STOCK_STATUS.IN_STOCK : STOCK_STATUS.OUT_OF_STOCK,
+    taxIncluded: product.price * TAX_RATE,
+  };
+};
+
+const result = findProductById(products, 2);
+console.log(result);
